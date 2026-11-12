@@ -3,8 +3,8 @@
   mediaFileName: 'mbc-pie-4x.mp4',
   cutSegments: [
     {
-      start: 4.023673469387755,
-      end: 10.097142857142856,
+      start: 5.466122448979592,
+      end: 9.388571428571428,
       name: '',
       selected: true,
     },
