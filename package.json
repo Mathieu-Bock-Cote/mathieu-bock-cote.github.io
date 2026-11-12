@@ -1,0 +1,17 @@
+{
+  "name": "mbc-pie",
+  "version": "0.1.0",
+  "type": "module",
+  "dependencies": {
+    "chokibasic": "^2.0.3",
+    "js-yaml": "^5.5.0"
+  },
+  "scripts": {
+    "export": "node ./scripts/export.js",
+    "build": "node ./scripts/build.js"
+  },
+  "allowScripts": {
+    "@parcel/watcher@2.6.0": true,
+    "esbuild@0.28.2": true
+  }
+}

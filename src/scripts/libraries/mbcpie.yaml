@@ -1,0 +1,5 @@
+# Base configuration
+config:
+  date: __DATE__
+  version: __VERSION__
+  video: assets/mbc-pie.mp4

@@ -1,0 +1,50 @@
+// Swipe hint, only shown on touch devices until the first swipe.
+#hint {
+	display: none;
+	position: fixed;
+	left: 0;
+	right: 0;
+	bottom: calc(24px + env(safe-area-inset-bottom));
+	justify-content: center;
+	align-items: center;
+	gap: 14px;
+	color: #fff;
+	font: 600 14px/1 system-ui, sans-serif;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+	pointer-events: none;
+	transition: opacity 0.4s;
+
+	.arrow {
+		font-size: 28px;
+		animation: nudge 1.2s ease-in-out infinite;
+
+		&.left { animation-name: nudge-left; }
+		&.right { animation-name: nudge-right; }
+	}
+
+	.label {
+		padding: 8px 14px;
+		border-radius: 999px;
+		background: rgba(0, 0, 0, 0.45);
+	}
+}
+
+@media (hover: none) and (pointer: coarse) {
+	#hint { display: flex; }
+}
+
+body.swiped #hint {
+	opacity: 0;
+}
+
+@keyframes nudge-left {
+	0%, 100% { transform: translateX(0); }
+	50% { transform: translateX(-8px); }
+}
+
+@keyframes nudge-right {
+	0%, 100% { transform: translateX(0); }
+	50% { transform: translateX(8px); }
+}
