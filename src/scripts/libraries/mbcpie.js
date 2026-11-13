@@ -49,16 +49,18 @@ export default class MbcPie {
 		window.addEventListener("mousemove", e => this.setTarget(e.clientX), { passive: true });
 
 		// iOS only decodes frames once playback has been started by a user gesture.
+		// Skipped elsewhere: play() would visibly run a few frames (glitch on Android).
+		const ios = /iP(hone|ad|od)/.test(navigator.userAgent) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1);
 		const unlock = () => {
 			v.play().then(() => { v.pause(); this.seeking = false; this.pump(); }).catch(() => {});
 			this.markReady();
 			for (const type of ["touchstart", "touchend", "mousedown"]) window.removeEventListener(type, unlock);
 		};
-		for (const type of ["touchstart", "touchend", "mousedown"]) window.addEventListener(type, unlock);
+		if (ios) for (const type of ["touchstart", "touchend", "mousedown"]) window.addEventListener(type, unlock);
 
 		// Seek watchdog: never stay stuck if "seeked" is not delivered.
 		setInterval(() => {
-			this.seeking = false;
+			if (this.seeking && performance.now() - this.seekStart > 500) this.seeking = false;
 			this.pump();
 		}, 100);
 	}
@@ -70,6 +72,7 @@ export default class MbcPie {
 		v.pause();
 		// Start on the first frame; a tiny offset forces iOS to actually paint it.
 		this.seeking = true;
+		this.seekStart = performance.now();
 		v.currentTime = 0.001;
 		if (this.lastX !== undefined) this.setTarget(this.lastX);
 		if (this.onReady) this.onReady(this);
@@ -90,6 +93,7 @@ export default class MbcPie {
 		if (this.seeking || !v.duration) return;
 		if (Math.abs(v.currentTime - this.target) < 0.001) return;
 		this.seeking = true;
+		this.seekStart = performance.now();
 		v.currentTime = this.target;
 	}
 }
