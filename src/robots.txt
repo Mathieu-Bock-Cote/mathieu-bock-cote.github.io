@@ -1,4 +1,4 @@
 User-agent: *
 Allow: /
 
-Sitemap: https://mathieu-bock-cote.github.io/sitemap.xml
+Sitemap: https://mathieubockcote.com/sitemap.xml
