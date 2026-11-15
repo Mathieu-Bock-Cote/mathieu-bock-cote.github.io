@@ -3,12 +3,68 @@
 <head>
 	<meta charset="UTF-8" />
 	<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, user-scalable=no" />
-	<title>MBC Pie</title>
+	<title>Spotted Mathieu Bock-Côté</title>
+	<meta name="description" content="Site satirique et critique sur Mathieu Bock-Côté. Glissez la souris ou le doigt de gauche à droite pour faire défiler la vidéo, image par image. Plus à venir..." />
+	<meta name="author" content="Maxime Larrivée-Roy" />
+	<meta name="robots" content="index, follow, max-image-preview:large" />
+	<meta name="theme-color" content="#000000" />
+	<link rel="canonical" href="https://mathieu-bock-cote.github.io/" />
+
+	<meta property="og:type" content="website" />
+	<meta property="og:site_name" content="Spotted Mathieu Bock-Côté" />
+	<meta property="og:locale" content="fr_CA" />
+	<meta property="og:title" content="Spotted Mathieu Bock-Côté" />
+	<meta property="og:description" content="Site satirique et critique sur Mathieu Bock-Côté. Glissez la souris ou le doigt de gauche à droite pour faire défiler la vidéo, image par image. Plus à venir..." />
+	<meta property="og:url" content="https://mathieu-bock-cote.github.io/" />
+	<meta property="og:image" content="https://mathieu-bock-cote.github.io/assets/ogimage.webp" />
+	<meta property="og:image:type" content="image/webp" />
+	<meta property="og:image:width" content="1200" />
+	<meta property="og:image:height" content="630" />
+	<meta property="og:image:alt" content="Spotted Mathieu Bock-Côté" />
+
+	<meta name="twitter:card" content="summary_large_image" />
+	<meta name="twitter:title" content="Spotted Mathieu Bock-Côté" />
+	<meta name="twitter:description" content="Site satirique et critique sur Mathieu Bock-Côté. Glissez la souris ou le doigt de gauche à droite pour faire défiler la vidéo, image par image. Plus à venir..." />
+	<meta name="twitter:image" content="https://mathieu-bock-cote.github.io/assets/ogimage.webp" />
+	<meta name="twitter:image:alt" content="Spotted Mathieu Bock-Côté" />
+
+	<script type="application/ld+json">
+	{
+		"@context": "https://schema.org",
+		"@type": "WebSite",
+		"name": "Spotted Mathieu Bock-Côté",
+		"url": "https://mathieu-bock-cote.github.io/",
+		"inLanguage": "fr-CA",
+		"description": "Site satirique et critique sur Mathieu Bock-Côté. Glissez la souris ou le doigt de gauche à droite pour faire défiler la vidéo, image par image. Plus à venir..."
+	}
+	</script>
 	<link rel="stylesheet" href="styles/main.min.css" />
 </head>
 <body>
 	<div id="app"></div>
+	<header class="sr-only">
+		<h1>Spotted Mathieu Bock-Côté</h1>
+		<p>Site satirique et critique sur Mathieu Bock-Côté. Glissez la souris ou le doigt de gauche à droite pour faire défiler la vidéo, image par image.</p>
+	</header>
+	<div id="topbar">
+		<div class="icons">
+			<a class="icon-btn" id="facebook" href="#" target="_blank" rel="noopener noreferrer" aria-label="Facebook">
+				<span class="icon icon-facebook" aria-hidden="true"></span>
+			</a>
+			<button class="icon-btn" id="info" type="button" aria-label="Information" aria-haspopup="dialog">
+				<span class="icon icon-info" aria-hidden="true"></span>
+			</button>
+		</div>
+		<div id="badge">Bientôt en ligne...</div>
+	</div>
+	<dialog id="info-modal" aria-labelledby="info-title">
+		<button class="close" type="button" aria-label="Fermer">&times;</button>
+		<h2 id="info-title">Information</h2>
+		<p>Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua.</p>
+		<p>Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.</p>
+	</dialog>
 	<div id="hint"><span class="arrow left">&#8592;</span><span class="label">Appuis et glisse</span><span class="arrow right">&#8594;</span></div>
+	<noscript><p class="sr-only">Cette page nécessite JavaScript pour faire défiler la vidéo.</p></noscript>
 	<script>
 		const script = document.createElement('script');
 		script.src = new URL('scripts/mbcpie.core.min.js', window.location).href;

@@ -39,6 +39,8 @@ export default class MbcPie {
 
 		// Touch events are used explicitly (iOS), pointer events for the mouse.
 		const touch = e => {
+			// Let taps reach the buttons, links and the modal.
+			if (e.target.closest("a, button, dialog")) return;
 			e.preventDefault();
 			const t = e.touches[0] || e.changedTouches[0];
 			if (t) this.setTarget(t.clientX);
@@ -46,7 +48,10 @@ export default class MbcPie {
 		};
 		window.addEventListener("touchstart", touch, { passive: false });
 		window.addEventListener("touchmove", touch, { passive: false });
-		window.addEventListener("mousemove", e => this.setTarget(e.clientX), { passive: true });
+		window.addEventListener("mousemove", e => {
+			if (!this.modal.open) this.setTarget(e.clientX);
+		}, { passive: true });
+		this.initModal();
 
 		// iOS only decodes frames once playback has been started by a user gesture.
 		// Skipped elsewhere: play() would visibly run a few frames (glitch on Android).
@@ -63,6 +68,16 @@ export default class MbcPie {
 			if (this.seeking && performance.now() - this.seekStart > 500) this.seeking = false;
 			this.pump();
 		}, 100);
+	}
+
+	// Information modal (native <dialog>): close with the button, the backdrop or Escape.
+	initModal() {
+		const modal = this.modal = document.getElementById("info-modal");
+		document.getElementById("info").addEventListener("click", () => modal.showModal());
+		modal.querySelector(".close").addEventListener("click", () => modal.close());
+		modal.addEventListener("click", e => {
+			if (e.target === modal) modal.close();
+		});
 	}
 
 	markReady() {

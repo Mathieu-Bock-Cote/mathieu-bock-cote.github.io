@@ -1,4 +1,4 @@
-# MBC Pie
+# Spotted Mathieu Bock-Côté
 
 Eelslap-style site: a full-screen (cover) video scrubbed by moving the mouse
 (or a finger on mobile) from left to right. Same layout and tooling as
@@ -9,6 +9,7 @@ Eelslap-style site: a full-screen (cover) video scrubbed by moving the mouse
 Everything lives in `src/`:
 
 - `src/index.html` - page, loads `scripts/mbcpie.core.min.js`
+- `src/robots.txt`, `src/sitemap.xml` - SEO (update `lastmod` when content changes)
 - `src/styles/main.scss` (+ partials) - compiled to `main.min.css` by `chokibasic`
 - `src/assets/mbc-pie.mp4` - the video
 - `src/scripts/mbcpie.core.js` - bundle entry, exposes `window.MbcPie(config)`

@@ -1,0 +1,64 @@
+// Top bar: Facebook and Information buttons on the left, "coming soon" badge on the right.
+$pill: rgba(0, 0, 0, 0.45);
+
+#topbar {
+	position: fixed;
+	top: calc(12px + env(safe-area-inset-top));
+	left: calc(12px + env(safe-area-inset-left));
+	right: calc(12px + env(safe-area-inset-right));
+	display: flex;
+	justify-content: space-between;
+	align-items: center;
+	gap: 8px;
+	pointer-events: none;
+
+	.icons {
+		display: flex;
+		gap: 8px;
+		pointer-events: auto;
+	}
+}
+
+#badge {
+	padding: 8px 14px;
+	border-radius: 999px;
+	background: $pill;
+	color: #fff;
+	font: 600 clamp(11px, 3.2vw, 14px)/1.2 system-ui, sans-serif;
+	letter-spacing: 0.08em;
+	text-transform: uppercase;
+	text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
+	white-space: nowrap;
+	pointer-events: none;
+}
+
+.icon-btn {
+	flex: none;
+	display: grid;
+	place-items: center;
+	width: 36px;
+	height: 36px;
+	padding: 0;
+	border: 0;
+	border-radius: 50%;
+	background: $pill;
+	color: #fff;
+	cursor: pointer;
+	-webkit-tap-highlight-color: transparent;
+	transition: background 0.2s;
+
+	// The SVG files are used as masks so the icon takes the button color.
+	.icon {
+		width: 20px;
+		height: 20px;
+		background: currentColor;
+		-webkit-mask: var(--icon) center / contain no-repeat;
+		mask: var(--icon) center / contain no-repeat;
+	}
+
+	.icon-facebook { --icon: url("../assets/facebook.svg"); }
+	.icon-info { --icon: url("../assets/info.svg"); }
+
+	&:hover,
+	&:focus-visible { background: rgba(0, 0, 0, 0.7); }
+}
