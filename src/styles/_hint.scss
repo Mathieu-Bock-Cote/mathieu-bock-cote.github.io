@@ -1,6 +1,6 @@
-// Swipe hint, only shown on touch devices until the first swipe.
+// Swipe hint, always visible on every platform.
 #hint {
-	display: none;
+	display: flex;
 	position: fixed;
 	left: 0;
 	right: 0;
@@ -14,7 +14,6 @@
 	text-transform: uppercase;
 	text-shadow: 0 1px 6px rgba(0, 0, 0, 0.8);
 	pointer-events: none;
-	transition: opacity 0.4s;
 
 	.arrow {
 		font-size: 28px;
@@ -31,12 +30,12 @@
 	}
 }
 
-@media (hover: none) and (pointer: coarse) {
-	#hint { display: flex; }
-}
+// Mouse wording by default, touch wording on touch devices.
+#hint .touch { display: none; }
 
-body.swiped #hint {
-	opacity: 0;
+@media (hover: none) and (pointer: coarse) {
+	#hint .touch { display: inline; }
+	#hint .mouse { display: none; }
 }
 
 @keyframes nudge-left {

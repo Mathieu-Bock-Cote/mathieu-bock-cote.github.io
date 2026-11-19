@@ -44,7 +44,6 @@ export default class MbcPie {
 			e.preventDefault();
 			const t = e.touches[0] || e.changedTouches[0];
 			if (t) this.setTarget(t.clientX);
-			if (e.type === "touchmove") document.body.classList.add("swiped");
 		};
 		window.addEventListener("touchstart", touch, { passive: false });
 		window.addEventListener("touchmove", touch, { passive: false });
